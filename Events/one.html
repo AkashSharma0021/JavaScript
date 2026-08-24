@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style = "background-color : black ; color : red;">
+    <h1>Image List</h1>
+
+    <ul id="images">
+        <li>
+            <img id="image1" src="https://via.placeholder.com/200" 
+                 alt="Image 1" width="200" alt="">
+        </li>
+
+        <li>
+            <img id="image2" src="https://via.placeholder.com/200" 
+                 alt="Image 2" width="200" alt="">
+        </li>
+
+        <li>
+            <img id="image3" src="https://via.placeholder.com/200" 
+                 alt="Image 3" width="200" alt="">
+        </li>
+
+        <li>
+            <img id="image4" src="https://via.placeholder.com/200" 
+                 alt="Image 4" width="200" alt="" >
+        </li>
+
+        <li>
+            <img id="image5" src="https://via.placeholder.com/200" 
+                 alt="Image 5" width="200" alt="">
+        </li>
+        <li><a style="color : blue;" href="https://familylink.google.com/" id="google">Google</a></li>
+    </ul>
+</body>
+<script>
+   document.getElementById('image4').onclick = function(){
+    alert('image4')
+   }
+// best approach
+    document.getElementById('image5').addEventListener('click' , function(){
+        alert('image5')
+    },false)
+// other approach
+    //attachEvent
+    // jquery - on
+    document.getElementById('image1').addEventListener('click' , function(e){
+        console.log(e);
+    },false)
+    // type , timestamp , defaultPrevented
+    // target , toElement , srcElement , currentElement
+    // clientX,clientY,screenX,screenY
+    // altkey,cntrlkey,shiftkey,keyCode
+
+
+    //event propagation
+
+   document.getElementById('images').addEventListener('click',function(e){
+    console.log("click inside the ul")                              // if we use false in both then its bubling and if true its capturing
+   },false)
+   document.getElementById('image2').addEventListener('click',function(e){
+    console.log("click image2")
+    e.stopPropagation()
+   },false)
+   document.getElementById('google').addEventListener('click',function(e){
+    e.preventDefault();
+    console.log("google clicked");
+
+   })
+
+   document.querySelector('#images').addEventListener('click',function(e){
+         console.log(e.target.parentNode);
+
+        if(e.target.tagName==='IMG'){
+
+         let removeIt = e.target.parentNode;
+         removeIt.remove();
+        }
+         // removeIt.parentNode.removeChild(removeIt)
+   },false)
+
+</script>
+</html>
